@@ -16,9 +16,13 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String user = "student";
 	private static final String pass = "student";
 	
-	public DatabaseAccessorObject() throws ClassNotFoundException {
-		  Class.forName("com.mysql.jdbc.Driver");
+	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
+	}
 
   @Override
   public Film findFilmById(int filmId) {
