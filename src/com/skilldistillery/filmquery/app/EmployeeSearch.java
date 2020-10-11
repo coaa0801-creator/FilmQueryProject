@@ -7,7 +7,7 @@ import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
 
 
 
-public class Employee {
+public class EmployeeSearch {
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -20,9 +20,9 @@ public class Employee {
 	private String password;
 	Scanner input = new Scanner(System.in);
 
-	public void runEmployeeFunctions() {
+	public boolean runEmployeeFunctions() {
 		int employeeID = enterEmployeeId();
-		Employee user = null;
+		EmployeeSearch user = null;
 		if (employeeID !=0) {
 			DatabaseAccessorObject dAO = new DatabaseAccessorObject();
 			try {
@@ -36,7 +36,8 @@ public class Employee {
 			} catch (SQLException e) {
 				System.out.println("We have encountered an error. Please try again");
 			}
-		}
+		}else { return false;}
+		return false;
 		
 		
 	}
@@ -48,7 +49,7 @@ public class Employee {
 	
 	
 	
-	private void enterPassword(Employee user) {
+	private void enterPassword(EmployeeSearch user) {
 		int passTryCount = 0;
 		while (passTryCount < 3) {
 			String enteredPassword = input.nextLine();
@@ -69,6 +70,14 @@ public class Employee {
 
 
 	private void printInvalidPassword() {
+		System.out.print("  ______                 _                       \n" + 
+				" |  ____|               | |                      \n" + 
+				" | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ \n" + 
+				" |  __| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\\n" + 
+				" | |____| | | | | | |_) | | (_) | |_| |  __/  __/\n" + 
+				" |______|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|\n" + 
+				"                  | |             __/ |          \n" + 
+				"                  |_|            |___/           ");
 		System.out.println("\n\n\n<================================>");
 		System.out.println("|                                |");
 		System.out.println("|                                |");
@@ -76,7 +85,7 @@ public class Employee {
 		System.out.println("|                                |");
 		System.out.println("|                                |");
 		System.out.println("|      PLEASE ENTER A VALID      |");
-		System.out.println("|             PASSWORD           |");
+		System.out.println("|            PASSWORD            |");
 		System.out.println("|                                |");
 		System.out.println("<================================>");		
 	}
@@ -92,10 +101,18 @@ public class Employee {
 		  }
 
 
-	private void printPromptForPassword(Employee user) {
+	private void printPromptForPassword(EmployeeSearch user) {
 		int rightPad = 15;
 		int leftPad = 16;
 //		String paddedName = name + new String(new char[width - name.length()]).replace((char) 32, fill);
+		System.out.print("  ______                 _                       \n" + 
+				" |  ____|               | |                      \n" + 
+				" | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ \n" + 
+				" |  __| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\\n" + 
+				" | |____| | | | | | |_) | | (_) | |_| |  __/  __/\n" + 
+				" |______|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|\n" + 
+				"                  | |             __/ |          \n" + 
+				"                  |_|            |___/           ");
 		System.out.println("\n\n\n<================================>");
 		System.out.println("|                                |");
 		System.out.println("|              HELLO             |");
@@ -117,6 +134,14 @@ public class Employee {
 
 
 	private void printNoIDFound() {
+		System.out.print("  ______                 _                       \n" + 
+				" |  ____|               | |                      \n" + 
+				" | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ \n" + 
+				" |  __| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\\n" + 
+				" | |____| | | | | | |_) | | (_) | |_| |  __/  __/\n" + 
+				" |______|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|\n" + 
+				"                  | |             __/ |          \n" + 
+				"                  |_|            |___/           ");
 		System.out.println("\n\n\n<================================>");
 		System.out.println("|                                |");
 		System.out.println("|                                |");
@@ -139,11 +164,16 @@ public class Employee {
 
 
 	private int enterEmployeeId() {
+		printPromptForEmployeeID();
 		int employeeInput = 0;
 		boolean keepGoing = true;
 		while (keepGoing) {
 		try {
-			employeeInput = Integer.parseInt(input.nextLine());
+			String userInput = input.nextLine();
+			if (userInput.equals("quit")) {
+				break;
+			}
+			employeeInput = Integer.parseInt(userInput);
 			keepGoing = false;
 		} catch (NumberFormatException e) {
 			printNoIDFound();
@@ -151,7 +181,46 @@ public class Employee {
 		}
 		return employeeInput;
 	}
+	
+	
+	private void printPromptForEmployeeID() {
+		System.out.print("  ______                 _                       \n" + 
+				" |  ____|               | |                      \n" + 
+				" | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ \n" + 
+				" |  __| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\\n" + 
+				" | |____| | | | | | |_) | | (_) | |_| |  __/  __/\n" + 
+				" |______|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|\n" + 
+				"                  | |             __/ |          \n" + 
+				"                  |_|            |___/           ");
+		System.out.println("\n\n\n<================================>");
+		System.out.println("|                                |");
+		System.out.println("|                                |");
+		System.out.println("|                                |");
+		System.out.println("|       PLEASE ENTER YOUR        |");
+		System.out.println("|         EMPLOYEE ID #          |");
+		System.out.println("|                                |");
+		System.out.println("|                                |");
+		System.out.println("|                                |");
+		System.out.println("<================================>");	
+		
+	}
+
+
+
+
+
+
+
+
 	private void searchMenu() {
+		System.out.print("  ______                 _                       \n" + 
+				" |  ____|               | |                      \n" + 
+				" | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ \n" + 
+				" |  __| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\\n" + 
+				" | |____| | | | | | |_) | | (_) | |_| |  __/  __/\n" + 
+				" |______|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|\n" + 
+				"                  | |             __/ |          \n" + 
+				"                  |_|            |___/           ");
 		System.out.println("\n\n\n<================================>");
 		System.out.println("|                                |");
 		System.out.println("|           SEARCH MENU          |");

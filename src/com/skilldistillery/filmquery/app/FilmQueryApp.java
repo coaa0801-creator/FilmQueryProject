@@ -11,7 +11,7 @@ public class FilmQueryApp {
   
   DatabaseAccessor db = new DatabaseAccessorObject();
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException {
     FilmQueryApp app = new FilmQueryApp();
 //    app.test();
     app.launch();
@@ -22,7 +22,7 @@ public class FilmQueryApp {
 //    System.out.println(film);
 //  }
 
-  private void launch() {
+  private void launch() throws SQLException {
     Scanner input = new Scanner(System.in);
     
     startUserInterface(input);
@@ -30,7 +30,7 @@ public class FilmQueryApp {
     input.close();
   }
 
-  private void startUserInterface(Scanner input) {
+  private void startUserInterface(Scanner input) throws SQLException {
 	  boolean keepGoing = true;
 	 printWelcome();
 	  while(keepGoing) {
@@ -38,11 +38,11 @@ public class FilmQueryApp {
 		  String userInput = input.nextLine().toLowerCase();
 	  switch (userInput) {
 	  case "1": case "employee": case "e":
-		  Employee runE = new Employee();
+		  EmployeeSearch runE = new EmployeeSearch();
 		  runE.runEmployeeFunctions();
 		  break;
 	  case "2": case "guest": case "g": case "customer": case "c":
-		  Customer runC = new Customer();
+		  CustomerSearch runC = new CustomerSearch();
 		  runC.runCustomerFunctions();
 		  break;
 	  case "3": case "quit": case "q":

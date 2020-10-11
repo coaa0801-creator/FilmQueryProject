@@ -58,7 +58,7 @@ public class Actor {
 
 	@Override
 	public String toString() {
-		return "Actor id=" + id + "\nfirstName=" + firstName + "\nlastName=" + lastName;
+		return "Actor id: " + id + "\nName: " + firstName + " " + lastName;
 	}
 	
 	public int getId() {

@@ -16,24 +16,9 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> actors;
+	private String language;
 	
 	
-	
-	
-	
-	
-	
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
-	public void setReleaseYear(short releaseYear) {
-		this.releaseYear = releaseYear;
-	}
 
 	public Film() {
 	}
@@ -44,10 +29,10 @@ public class Film {
 	
 	@Override
 	public String toString() {
-		return "Film id=" + id + "\ntitle=" + title + "\ndecsription=" + decsription + "\nreleaseYear=" + releaseYear
-				+ "/nlanguageId=" + languageId + "\nrentalDuration=" + rentalDuration + "\nrentalRate=" + rentalRate
-				+ "\nfilmLength=" + filmLength + "\nreplacementCost=" + replacementCost + "\nrating=" + rating
-				+ "\nspecialFeatures=" + specialFeatures;
+		return "FILM ID:\t" + id + "\nTITLE:\t" + title + "\nRATING: " + rating + "\nDESCRIPTION:\t" + decsription + "\nRELEASE YEAR:\t" + releaseYear
+				+ "\nLANGUAGE" + language + "\nRENTAL DURATION: " + rentalDuration + "\nRENTAL RATE: $" + rentalRate
+				+ "\nFILM LENGTH: " + filmLength + " MINUTES" + "\nCOST IF NOT RETURNED: $" + replacementCost 
+				+ "\nSPECIAL FEATURES INCLUDED: " + specialFeatures + "\n======================================\n";
 	}
 	@Override
 	public int hashCode() {
@@ -124,17 +109,45 @@ public class Film {
 		return releaseYear;
 	}
 
+	public void setReleaseYear(short releaseYear) {
+		this.releaseYear = releaseYear;
+	}
+	public int getRentalDuration() {
+		return rentalDuration;
+	}
+	
 	public void setRentalDuration(int rentalDuration) {
 		this.rentalDuration = rentalDuration;
+	}
+	public int getFilmLength() {
+		return filmLength;
 	}
 
 	public void setFilmLength(int filmLength) {
 		this.filmLength = filmLength;
 	}
 
+	
+	public String getLanguage() {
+		return language;
+	}
+	
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
+	
+	public List<Actor> getActors() {
+		return actors;
+	}
+	
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -157,13 +170,13 @@ public class Film {
 		this.languageId = languageId;
 	}
 
-	public Film(int id, String title, String decsription, short releaseYear, int languageId, int rentalDuration,
+	public Film(int id, String title, String decsription, short releaseYear, String language, int rentalDuration,
 			double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures) {
 		this.id = id;
 		this.title = title;
 		this.decsription = decsription;
 		this.releaseYear = releaseYear;
-		this.languageId = languageId;
+		this.language = language;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.filmLength = filmLength;
