@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.skilldistillery.filmquery.app.Employee;
 import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
@@ -52,8 +53,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  List<Film> films = new ArrayList<>();
 	  try {
 	    Connection conn = DriverManager.getConnection(URL, user, pass);
-	    String sql = "SELECT id, title, description, release_year, language_id, rental_duration, ";
-	                sql += " rental_rate, length, replacement_cost, rating, special_features "
+	    String sql = "SELECT id, title, description, release_year, language_id, rental_duration, "
+	               + " rental_rate, length, replacement_cost, rating, special_features "
 	               +  " FROM film JOIN film_actor ON film.id = film_actor.film_id "
 	               + " WHERE actor_id = ?";
 	    PreparedStatement stmt = conn.prepareStatement(sql);
@@ -86,8 +87,31 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 @Override
 public List<Actor> findActorsByFilmId(int filmId) {
-	// TODO Auto-generated method stub
 	return null;
 }
+@Override
+public Employee findEmployeeByID(int employeeID) throws SQLException {
+	Employee employee = null;
+	  Connection conn = DriverManager.getConnection(URL, user, pass);
+	  String sql = "SELECT * FROM staff WHERE id = ?";
+	  PreparedStatement stmt = conn.prepareStatement(sql);
+	  stmt.setInt(1,employeeID);
+	  ResultSet empResult = stmt.executeQuery();
+	  if (empResult.next()) {
+	    employee = new Employee(); // Create the object
+	    employee.setId(empResult.getInt("id"));
+	    employee.setFirstName(empResult.getString("first_name").toUpperCase());
+	    employee.setLastName(empResult.getString("last_name").toUpperCase());
+	    if (empResult.getObject("password") == null) {
+	    	employee.setPassword("");
+	    }else {
+	    employee.setPassword(empResult.getString("password"));}
+//	    System.out.println(employee.getFirstName());
+	  }
+	
+	return employee;
+	
+}
+
 
 }
