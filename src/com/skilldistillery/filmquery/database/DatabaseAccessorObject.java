@@ -216,6 +216,7 @@ public List<Film> getListOfFilmsForStringSearchReturn(List<Film> films, String s
 		rs.close();
 		stmt.close();
 	} catch (SQLException e) {
+//		e.printStackTrace();
 		System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
 	}
     return films;
@@ -296,7 +297,7 @@ public List<Film> findFilmsFromSearch(String userSearch) {
 		rs.close();
 		stmt.close();
 	} catch (SQLException e) {
-		e.printStackTrace();
+//		e.printStackTrace();
 		System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
 	}
   return films;
