@@ -29,10 +29,10 @@ public class Film {
 	
 	@Override
 	public String toString() {
-		return "FILM ID:\t" + id + "\nTITLE:\t" + title + "\nRATING: " + rating + "\nDESCRIPTION:\t" + decsription + "\nRELEASE YEAR:\t" + releaseYear
-				+ "\nLANGUAGE" + language + "\nRENTAL DURATION: " + rentalDuration + "\nRENTAL RATE: $" + rentalRate
-				+ "\nFILM LENGTH: " + filmLength + " MINUTES" + "\nCOST IF NOT RETURNED: $" + replacementCost 
-				+ "\nSPECIAL FEATURES INCLUDED: " + specialFeatures + "\n======================================\n";
+		return "FILM ID:\t\t" + id + "\nTITLE:\t\t\t" + title + "\nRATING:\t\t\t" + rating + "\nDESCRIPTION:\t\t" + decsription + "\nRELEASE YEAR:\t\t" + releaseYear
+				+ "\nLANGUAGE:\t\t" + language + "\nRENTAL DURATION:\t" + rentalDuration + " DAYS" + "\nRENTAL RATE:\t\t$" + rentalRate
+				+ "\nFILM LENGTH:\t\t" + filmLength + " MINUTES" + "\nCOST IF NOT RETURNED:\t$" + replacementCost 
+				+ "\nFEATURES INCLUDED:\t" + specialFeatures + "\n======================================\n";
 	}
 	@Override
 	public int hashCode() {

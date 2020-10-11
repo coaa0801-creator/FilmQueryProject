@@ -171,32 +171,42 @@ public EmployeeSearch findEmployeeByID(int employeeID) throws SQLException {
 
 
 @Override
-public Film findFilmByTitle(String filmName) throws SQLException {
-	  Film film = null;
-	  Connection conn = DriverManager.getConnection(URL, user, pass);
-	  String sql = "SELECT film.*, language.* FROM film"
-	  			+ " JOIN language on film.language_id = language.id "
-	  			+ "WHERE film.title LIKE '%?%' ";
-	  PreparedStatement stmt = conn.prepareStatement(sql);
-	  stmt.setString(0, filmName);
-	  ResultSet filmResult = stmt.executeQuery();
-	  if (filmResult.next()) {
-	    film = new Film(); // Create the object
-	    film.setId(filmResult.getInt("id"));
-	    film.setTitle(filmResult.getString("title").toUpperCase());
-  	film.setDecsription(filmResult.getString("description").toUpperCase());
-  	film.setReleaseYear(filmResult.getShort("release_year"));
-	film.setLanguage(filmResult.getString("name").toUpperCase());
-  	film.setRentalDuration(filmResult.getInt("rental_duration"));
-  	film.setRentalRate(filmResult.getDouble("rental_rate"));
-  	film.setFilmLength(filmResult.getInt("length"));
-  	film.setReplacementCost(filmResult.getDouble("replacement_cost"));
-  	film.setRating(filmResult.getString("rating").toUpperCase());
-  	film.setSpecialFeatures(filmResult.getString("special_features").toUpperCase());
+public List<Film> findFilmByTitle(String filmName) throws SQLException {
+	  List<Film> films = new ArrayList<>();
+	  try {
+	    Connection conn = DriverManager.getConnection(URL, user, pass);
+	    String sql = "SELECT film.*, language.* FROM film "
+	    		+ "JOIN language on film.language_id = language.id "
+	    		+ "WHERE film.title LIKE '%' ? '%' ";
+
+	    PreparedStatement stmt = conn.prepareStatement(sql);
+	    stmt.setString(1, filmName);
+	    ResultSet rs = stmt.executeQuery();
+	    while (rs.next()) {
+	    	int filmId = rs.getInt("id");
+	    	String title = rs.getString("title").toUpperCase();
+	    	String desc = rs.getString("description").toUpperCase();
+	    	short releaseYear = rs.getShort("release_year");
+	    	String lang = rs.getString("name").toUpperCase();
+	    	int rentDur = rs.getInt("rental_duration");
+	    	double rate = rs.getDouble("rental_rate");
+	    	int length = rs.getInt("length");
+	    	double repCost = rs.getDouble("replacement_cost");
+	    	String rating = rs.getString("rating").toUpperCase();
+	    	String features = rs.getString("special_features").toUpperCase();
+
+	      Film film = new Film(filmId, title, desc, releaseYear, lang,
+	                           rentDur, rate, length, repCost, rating, features);
+	      films.add(film);
+	    }
+	    rs.close();
+	    stmt.close();
+	    conn.close();
+	  } catch (SQLException e) {
+	    e.printStackTrace();
 	  }
-	 
-	  return film;
-}
+	  return films;
+	}
 
 @Override
 public List<Film> findFilmsByActorName(String actorName) throws SQLException {
@@ -207,7 +217,7 @@ public List<Film> findFilmsByActorName(String actorName) throws SQLException {
 	    					+ "JOIN language on film.language_id = language.id "
 	    					+ "JOIN film_actor ON film.id = film_actor.film_id "
 	    					+ "JOIN actor ON actor.id = film_actor.actor_id "
-	    					+ "WHERE concat(actor.first_name,' ', actor.last_name) LIKE '%?%'";
+	    					+ "WHERE concat(actor.first_name,' ', actor.last_name) LIKE '%' ? '%'";
 	    PreparedStatement stmt = conn.prepareStatement(sql);
 	    stmt.setString(1, actorName);
 	    ResultSet rs = stmt.executeQuery();
@@ -243,7 +253,7 @@ public List<Film> findFilmsByRating(String searchRating) {
 	    Connection conn = DriverManager.getConnection(URL, user, pass);
 	    String sql = "SELECT film.*, language.* FROM film "
 	    		+ "JOIN language on film.language_id = language.id "  
-	    		+ "WHERE film.rating = '?'";
+	    		+ "WHERE film.rating = ?";
 	    PreparedStatement stmt = conn.prepareStatement(sql);
 	    stmt.setString(1, searchRating);
 	    ResultSet rs = stmt.executeQuery();

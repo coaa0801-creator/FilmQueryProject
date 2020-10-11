@@ -21,6 +21,7 @@ public class EmployeeSearch {
 	Scanner input = new Scanner(System.in);
 
 	public boolean runEmployeeFunctions() {
+		boolean keepGoing = true;
 		int employeeID = enterEmployeeId();
 		EmployeeSearch user = null;
 		if (employeeID !=0) {
@@ -30,16 +31,21 @@ public class EmployeeSearch {
 			if (user == null) { 
 				printNoIDFound();
 			}else {
+				while (keepGoing) {
 				printPromptForPassword(user);
-				enterPassword(user);
+				keepGoing = enterPassword(user);
+				searchMenu();
+				searchSwitch();
+				keepGoing = false;
 			}
+				}
 			} catch (SQLException e) {
 				System.out.println("We have encountered an error. Please try again");
 			}
-		}else { return false;}
-		return false;
-		
-		
+		}else { 
+			keepGoing=false;
+			return keepGoing;}
+		return keepGoing;
 	}
 	
 	
@@ -49,7 +55,18 @@ public class EmployeeSearch {
 	
 	
 	
-	private void enterPassword(EmployeeSearch user) {
+	private void searchSwitch() {
+System.out.println("Build Search for employee switch here");		
+	}
+
+
+
+
+
+
+
+
+	private boolean enterPassword(EmployeeSearch user) {
 		int passTryCount = 0;
 		while (passTryCount < 3) {
 			String enteredPassword = input.nextLine();
@@ -57,9 +74,11 @@ public class EmployeeSearch {
 				printInvalidPassword();
 				passTryCount++;
 		}else {
-			searchMenu();
+			passTryCount = 3;
+			return true;
 		}
 		}
+		return false;
 	}
 
 

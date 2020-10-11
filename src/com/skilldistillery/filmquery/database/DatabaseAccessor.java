@@ -13,7 +13,7 @@ public interface DatabaseAccessor {
   public List<Actor> findActorsByFilmId(int filmId);
   public List<Film> findFilmsByActorId(int actorId);
   public EmployeeSearch findEmployeeByID(int employeeId) throws SQLException;
-  public Film findFilmByTitle(String filmName) throws SQLException;
+  public List<Film> findFilmByTitle(String filmName) throws SQLException;
   public List<Film> findFilmsByActorName(String actorName) throws SQLException;
   public List<Film> findFilmsByRating(String searchRating);
 }

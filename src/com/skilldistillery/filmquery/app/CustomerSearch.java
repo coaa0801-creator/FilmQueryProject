@@ -27,8 +27,8 @@ public class CustomerSearch {
 		  switch (userInput) {
 		  case "1": case "film": case "film name": case "name":
 			  userSearch = promptForSearchParameter(1);
-			  Film searchFilm = run.findFilmByTitle(userSearch);
-			  System.out.println(searchFilm);
+			  List<Film> searchFilmTitle = run.findFilmByTitle(userSearch);
+			  printFilmsList(searchFilmTitle);
 			  break;
 		  case "2": case "rating": case "r":
 			  userSearch = promptForSearchParameter(2);
@@ -80,7 +80,7 @@ public class CustomerSearch {
 					searchHeader = "KEYWORD";
 				}
 		printSearchParameterPrompt(searchHeader);
-		String userSearch = input.nextLine().toLowerCase();
+		String userSearch = input.nextLine();
 		return userSearch;
 		
 	}
