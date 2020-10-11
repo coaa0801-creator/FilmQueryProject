@@ -47,6 +47,8 @@ public class CustomerSearch {
 			  break;
 		  case "5": case "general": case "search": case "general search":
 			   userSearch = promptForSearchParameter(5);
+			   List<Film> filmsBasedOnSearch = run.findFilmsFromSearch(userSearch);
+			   printFilmsList(filmsBasedOnSearch);
 			  break;
 		  case "6": case "quit": case "q":
 			  keepGoing = false;
