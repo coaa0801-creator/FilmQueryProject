@@ -1,6 +1,5 @@
 package com.skilldistillery.filmquery.entities;
 
-import java.time.Duration;
 import java.util.List;
 
 public class Film {

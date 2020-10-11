@@ -1,7 +1,6 @@
 package com.skilldistillery.filmquery.app;
 
 import java.util.List;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
@@ -94,8 +93,7 @@ public class CustomerSearch {
 	}
 
 	private void printSearchParameterPrompt(String searchHeader) {
-		int rightPad = 10;
-		int leftPad = 21;
+	
 		System.out.print("   _____                 _   \n" + 
 				"  / ____|               | |  \n" + 
 				" | |  __ _   _  ___  ___| |_ \n" + 
