@@ -17,4 +17,5 @@ public interface DatabaseAccessor {
   public List<Film> findFilmsByActorName(String actorName); 
   public List<Film> findFilmsByRating(String searchRating);
   public List<Film> getListOfFilmsForStringSearchReturn(List<Film> films, String sql, String userSearch);
+  public void printFilmsList(List<Film> searchList);
 }

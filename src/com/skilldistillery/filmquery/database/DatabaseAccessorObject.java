@@ -302,7 +302,16 @@ public List<Film> findFilmsFromSearch(String userSearch) {
 	}
   return films;
 }
-	
+public void printFilmsList(List<Film> searchList) {
+	int count = 0;
+	for (Film film : searchList) {
+		System.out.println(film);
+		film.printCast(film.getActors());
+		System.out.println("\n==================================================================================================\n");
+		count++;
+	}
+	System.out.println("Your search returned " + count + " results");
+}
  
 
 }

@@ -1,8 +1,11 @@
 package com.skilldistillery.filmquery.app;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Film;
+import com.skilldistillery.filmquery.sysoutformatting.Align;
 
 public class EmployeeSearch {
 	private int id;
@@ -42,9 +45,90 @@ public class EmployeeSearch {
 		return keepGoing;
 	}
 
-	private void searchSwitch() {
-		System.out.println("Build Search for employee switch here");
+	private boolean searchSwitch() {
+			boolean keepGoing = true;
+			DatabaseAccessorObject run = new DatabaseAccessorObject();
+			String userSearch = "";
+			
+			  while(keepGoing) {
+				  searchMenu();
+				  String userInput = input.nextLine().toLowerCase();
+			  switch (userInput) {
+			  case "1": case "film": case "film name": case "name":
+				  userSearch = promptForSearchParameter(1);
+				  List<Film> searchFilmTitle = run.findFilmByTitle(userSearch);
+				run.printFilmsList(searchFilmTitle);
+				  break;
+			  case "2": case "rating": case "r":
+				  userSearch = promptForSearchParameter(2);
+				  List<Film> filmsByRating = run.findFilmsByRating(userSearch);
+				  run.printFilmsList(filmsByRating);
+				  break;
+			  case "3": case "actor": case "a": 
+				   userSearch = promptForSearchParameter(3);
+				   List<Film> filmsByActorName;
+				filmsByActorName = run.findFilmsByActorName(userSearch);
+				run.printFilmsList(filmsByActorName);
+				  break;
+			  case "4": case "genre":
+				   userSearch = promptForSearchParameter(4);
+				   List<Film> filmsByGenre = run.findFilmsByCategory(userSearch);
+				  run.printFilmsList(filmsByGenre);
+				  break;
+			  case "5": case "general": case "search": case "general search":
+				   userSearch = promptForSearchParameter(5);
+				   List<Film> filmsBasedOnSearch = run.findFilmsFromSearch(userSearch);
+				   run.printFilmsList(filmsBasedOnSearch);
+				  break;
+			  case "6": case "quit": case "q":
+				  keepGoing = false;
+				  break;
+			default: System.out.println("Invalid entry\n");
+			  }
+			  }
+			  return keepGoing;
+			
+		}
+	private String promptForSearchParameter(int searchType) {
+		String searchHeader = "";
+		if (searchType == 1) {
+			searchHeader = "FILM ID";
+			
+		}else if(searchType == 2) {
+			searchHeader = "ACTOR ID";
+			
+		}else if(searchType == 3) {
+			searchHeader = "INVENTORY ID";
+			
+		}else if(searchType == 4) {
+			searchHeader = "FILM TITLE";
+			
+		}else if(searchType == 5) {
+			searchHeader = "ACTOR";
+		}else if(searchType == 6) {
+			searchHeader = "KEYWORD";
+		}
+printSearchParameterPrompt(searchHeader);
+String userSearch = input.nextLine();
+return userSearch;
+
 	}
+		
+
+	
+
+	private void printSearchParameterPrompt(String searchHeader) {
+		// TODO Auto-generated method stub
+		System.out.println("\n\n\n<================================>");
+		System.out.println("|                                |");
+		System.out.println("|"+ Align.center("PLEASE ENTER YOUR", 32, (char)32) + "|");
+		System.out.println("|                                |");
+		System.out.println("|"+ Align.center(searchHeader, 32, (char)32) + "|");
+		System.out.println("|                                |");
+		System.out.println("|"+ Align.center("TO SEARCH", 32, (char)32) + "|");
+		System.out.println("|                                |");
+		System.out.println("<================================>");}
+	
 
 	private boolean enterPassword(EmployeeSearch user) {
 		int passTryCount = 0;
