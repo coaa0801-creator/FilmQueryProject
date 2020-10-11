@@ -95,9 +95,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	    	double repCost = rs.getDouble("replacement_cost");
 	    	String rating = rs.getString("rating").toUpperCase();
 	    	String features = rs.getString("special_features").toUpperCase();
+	    	List<Actor> actors = findActorsByFilmId(filmId);
 
 	    	Film film = new Film(filmId, title, desc, releaseYear, lang,
-                    rentDur, rate, length, repCost, rating, features);
+                    rentDur, rate, length, repCost, rating, features, actors);
 	      films.add(film);
 	    }
 	    rs.close();
@@ -194,9 +195,11 @@ public List<Film> findFilmByTitle(String filmName) throws SQLException {
 	    	double repCost = rs.getDouble("replacement_cost");
 	    	String rating = rs.getString("rating").toUpperCase();
 	    	String features = rs.getString("special_features").toUpperCase();
+	    	List<Actor> actors = findActorsByFilmId(filmId);
+	    	
 
 	      Film film = new Film(filmId, title, desc, releaseYear, lang,
-	                           rentDur, rate, length, repCost, rating, features);
+	                           rentDur, rate, length, repCost, rating, features, actors);
 	      films.add(film);
 	    }
 	    rs.close();
@@ -233,9 +236,10 @@ public List<Film> findFilmsByActorName(String actorName) throws SQLException {
 	    	double repCost = rs.getDouble("replacement_cost");
 	    	String rating = rs.getString("rating").toUpperCase();
 	    	String features = rs.getString("special_features").toUpperCase();
+	    	List<Actor> actors = findActorsByFilmId(filmId);
 
 	      Film film = new Film(filmId, title, desc, releaseYear, lang,
-	                           rentDur, rate, length, repCost, rating, features);
+	                           rentDur, rate, length, repCost, rating, features, actors);
 	      films.add(film);
 	    }
 	    rs.close();
@@ -269,9 +273,10 @@ public List<Film> findFilmsByRating(String searchRating) {
 	    	double repCost = rs.getDouble("replacement_cost");
 	    	String rating = rs.getString("rating").toUpperCase();
 	    	String features = rs.getString("special_features").toUpperCase();
+	    	List<Actor> actors = findActorsByFilmId(filmId);
 
 	    	Film film = new Film(filmId, title, desc, releaseYear, lang,
-                    rentDur, rate, length, repCost, rating, features);
+                    rentDur, rate, length, repCost, rating, features, actors);
 	      films.add(film);
 	    }
 	    rs.close();

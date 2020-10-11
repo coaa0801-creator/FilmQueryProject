@@ -29,11 +29,21 @@ public class Film {
 	
 	@Override
 	public String toString() {
-		return "FILM ID:\t\t" + id + "\nTITLE:\t\t\t" + title + "\nRATING:\t\t\t" + rating + "\nDESCRIPTION:\t\t" + decsription + "\nRELEASE YEAR:\t\t" + releaseYear
+		return "FILM ID:\t\t" + id + "\nTITLE:\t\t\t" + title + "\nDESCRIPTION:\t\t" + decsription + "\nRATING:\t\t\t" + rating + "\nRELEASE YEAR:\t\t" + releaseYear
 				+ "\nLANGUAGE:\t\t" + language + "\nRENTAL DURATION:\t" + rentalDuration + " DAYS" + "\nRENTAL RATE:\t\t$" + rentalRate
 				+ "\nFILM LENGTH:\t\t" + filmLength + " MINUTES" + "\nCOST IF NOT RETURNED:\t$" + replacementCost 
-				+ "\nFEATURES INCLUDED:\t" + specialFeatures + "\n======================================\n";
+				+ "\nFEATURES INCLUDED:\t" + specialFeatures;
 	}
+	public void printCast(List<Actor> actors2) {
+		System.out.println("CAST: ");
+			for (Actor actor : actors2) {
+		System.out.println("\t\t\t" + actor.getFirstName() + " " + actor.getLastName());}
+	}
+
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -171,7 +181,7 @@ public class Film {
 	}
 
 	public Film(int id, String title, String decsription, short releaseYear, String language, int rentalDuration,
-			double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures) {
+			double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures, List<Actor> actors) {
 		this.id = id;
 		this.title = title;
 		this.decsription = decsription;
@@ -183,6 +193,7 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+		this.actors = actors;
 		
 	}
 

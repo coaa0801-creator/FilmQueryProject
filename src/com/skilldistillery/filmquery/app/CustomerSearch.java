@@ -37,6 +37,8 @@ public class CustomerSearch {
 			  break;
 		  case "3": case "actor": case "a": 
 			   userSearch = promptForSearchParameter(3);
+			   List<Film> filmsByActorName = run.findFilmsByActorName(userSearch);
+			   printFilmsList(filmsByActorName);
 			  break;
 		  case "4": case "genre":
 			   userSearch = promptForSearchParameter(4);
@@ -55,11 +57,14 @@ public class CustomerSearch {
 	}
 
 	private void printFilmsList(List<Film> filmsByRating) {
+		int count = 0;
 		for (Film film : filmsByRating) {
 			System.out.println(film);
-			
+			film.printCast(film.getActors());
+			System.out.println("\n==================================================================================================\n");
+			count++;
 		}
-		
+		System.out.println("Your search returned " + count + " results");
 	}
 
 	private String promptForSearchParameter(int searchType) {
