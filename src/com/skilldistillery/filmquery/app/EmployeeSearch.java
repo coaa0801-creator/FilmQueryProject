@@ -26,21 +26,17 @@ public class EmployeeSearch {
 		EmployeeSearch user = null;
 		if (employeeID !=0) {
 			DatabaseAccessorObject dAO = new DatabaseAccessorObject();
-			try {
-				user =	dAO.findEmployeeByID(employeeID);
-			if (user == null) { 
-				printNoIDFound();
-			}else {
-				while (keepGoing) {
-				printPromptForPassword(user);
-				keepGoing = enterPassword(user);
-				searchMenu();
-				searchSwitch();
-				keepGoing = false;
-			}
-				}
-			} catch (SQLException e) {
-				System.out.println("We have encountered an error. Please try again");
+			user =	dAO.findEmployeeByID(employeeID);
+if (user == null) { 
+			printNoIDFound();
+}else {
+			while (keepGoing) {
+			printPromptForPassword(user);
+			keepGoing = enterPassword(user);
+			searchMenu();
+			searchSwitch();
+			keepGoing = false;
+}
 			}
 		}else { 
 			keepGoing=false;

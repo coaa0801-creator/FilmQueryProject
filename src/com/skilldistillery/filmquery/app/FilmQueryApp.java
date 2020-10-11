@@ -11,7 +11,7 @@ public class FilmQueryApp {
   
   DatabaseAccessor db = new DatabaseAccessorObject();
 
-  public static void main(String[] args) throws SQLException {
+  public static void main(String[] args) {
     FilmQueryApp app = new FilmQueryApp();
 //    app.test();
     app.launch();
@@ -22,7 +22,7 @@ public class FilmQueryApp {
 //    System.out.println(film);
 //  }
 
-  private void launch() throws SQLException {
+  private void launch() {
     Scanner input = new Scanner(System.in);
     
     startUserInterface(input);
@@ -30,7 +30,7 @@ public class FilmQueryApp {
     input.close();
   }
 
-  private void startUserInterface(Scanner input) throws SQLException {
+  private void startUserInterface(Scanner input){
 	  boolean keepGoing = true;
 	 printWelcome();
 	  while(keepGoing) {
@@ -39,11 +39,11 @@ public class FilmQueryApp {
 	  switch (userInput) {
 	  case "1": case "employee": case "e":
 		  EmployeeSearch runE = new EmployeeSearch();
-		  runE.runEmployeeFunctions();
+		  keepGoing = runE.runEmployeeFunctions();
 		  break;
 	  case "2": case "guest": case "g": case "customer": case "c":
 		  CustomerSearch runC = new CustomerSearch();
-		  runC.runCustomerFunctions();
+		  keepGoing = runC.runCustomerFunctions();
 		  break;
 	  case "3": case "quit": case "q":
 		  keepGoing = false;
@@ -52,12 +52,16 @@ public class FilmQueryApp {
 	  }
 	  
 	  }
-	  
+	  printLogOut();
 	  
 	  
 	  
 	  
 	  }
+		private void printLogOut() {
+	
+}
+
 		private void printWelcome(){System.out.println(" __          __  _                          \n" + 
 				" \\ \\        / / | |                         \n" + 
 				"  \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___ \n" + 

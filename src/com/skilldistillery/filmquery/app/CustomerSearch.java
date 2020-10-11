@@ -11,12 +11,12 @@ public class CustomerSearch {
 
 	Scanner input = new Scanner(System.in);
 
-	public void runCustomerFunctions() throws SQLException {
-		menuSwitch();
-		
+	public boolean runCustomerFunctions(){
+		boolean keepGoing = menuSwitch();
+		return keepGoing;
 	}
 
-	private boolean menuSwitch() throws SQLException {
+	private boolean menuSwitch() {
 		boolean keepGoing = true;
 		DatabaseAccessorObject run = new DatabaseAccessorObject();
 		String userSearch = "";
@@ -28,7 +28,7 @@ public class CustomerSearch {
 		  case "1": case "film": case "film name": case "name":
 			  userSearch = promptForSearchParameter(1);
 			  List<Film> searchFilmTitle = run.findFilmByTitle(userSearch);
-			  printFilmsList(searchFilmTitle);
+			printFilmsList(searchFilmTitle);
 			  break;
 		  case "2": case "rating": case "r":
 			  userSearch = promptForSearchParameter(2);
@@ -37,11 +37,14 @@ public class CustomerSearch {
 			  break;
 		  case "3": case "actor": case "a": 
 			   userSearch = promptForSearchParameter(3);
-			   List<Film> filmsByActorName = run.findFilmsByActorName(userSearch);
-			   printFilmsList(filmsByActorName);
+			   List<Film> filmsByActorName;
+			filmsByActorName = run.findFilmsByActorName(userSearch);
+			printFilmsList(filmsByActorName);
 			  break;
 		  case "4": case "genre":
 			   userSearch = promptForSearchParameter(4);
+			   List<Film> filmsByGenre = run.findFilmsByCategory(userSearch);
+			   printFilmsList(filmsByGenre);
 			  break;
 		  case "5": case "general": case "search": case "general search":
 			   userSearch = promptForSearchParameter(5);

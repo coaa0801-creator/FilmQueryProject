@@ -1,5 +1,6 @@
 package com.skilldistillery.filmquery.database;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,8 +13,9 @@ public interface DatabaseAccessor {
   public Actor findActorById(int actorId) throws SQLException;
   public List<Actor> findActorsByFilmId(int filmId);
   public List<Film> findFilmsByActorId(int actorId);
-  public EmployeeSearch findEmployeeByID(int employeeId) throws SQLException;
-  public List<Film> findFilmByTitle(String filmName) throws SQLException;
-  public List<Film> findFilmsByActorName(String actorName) throws SQLException;
+  public EmployeeSearch findEmployeeByID(int employeeId);
+  public List<Film> findFilmByTitle(String filmName);
+  public List<Film> findFilmsByActorName(String actorName); 
   public List<Film> findFilmsByRating(String searchRating);
+  public List<Film> getListOfFilmsForStringSearchReturn(List<Film> films, String sql, String userSearch);
 }
