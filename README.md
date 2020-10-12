@@ -14,8 +14,9 @@ Search through a database simulating a movie rental facility. Find films based o
 6. View log out screen upon Quit
 
 ## Walkthrough (Long Version)
-On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public.
 <img align="right" src="images/WelcomeDisplay.png">
+On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public.
+
 
 ## Struggles
 
