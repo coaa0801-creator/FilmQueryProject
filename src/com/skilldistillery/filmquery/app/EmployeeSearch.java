@@ -33,13 +33,23 @@ public class EmployeeSearch {
 				while (keepGoing) {
 					printPromptForPassword(user);
 					keepGoing = enterPassword(user);
-					searchSwitch();
+					if (keepGoing == false) {
+						boolean mainMenu = true;
+						return mainMenu;
+					}
 					keepGoing = false;
+					keepGoing = searchSwitch();
+					System.out.println(keepGoing);
+					if (keepGoing == true) {
+						boolean mainMenu = true;
+						return mainMenu;
+					}
+					
 				}
 			}
 		} else {
-			keepGoing = false;
-			return keepGoing;
+			boolean mainMenu = true;
+			return mainMenu;
 		}
 		return keepGoing;
 	}
@@ -118,7 +128,7 @@ public class EmployeeSearch {
 				  return mainMenu;
 			  case "8": case "quit": case "q":
 				  keepGoing = false;
-				  break;
+				  return keepGoing;
 			default: System.out.println("Invalid entry\n");
 			  }
 			  }
@@ -254,7 +264,7 @@ return userSearch;
 		while (keepGoing) {
 			try {
 				String userInput = input.nextLine();
-				if (userInput.equals("quit")) {
+				if (userInput.equals("main") || userInput.equals("q")) {
 					break;
 				}
 				employeeInput = Integer.parseInt(userInput);
