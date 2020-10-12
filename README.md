@@ -32,7 +32,7 @@ Any search will move the program into the prompt for search type option where ba
  Once the search has completed the user may choose to search again, quit the program or logout (return to Welcome Screen). An employee who chooses to logout will require password entry upon re-entry into the employee portal.
 
  When a user chooses to Quit, the program will terminate with a goodbye message.
-<img align="center" src="images/GoodBye.png"  width="366" height="235">
+<img align="center" src="images/Goodbye.png"  width="366" height="235">
 
 ## Struggles
 
