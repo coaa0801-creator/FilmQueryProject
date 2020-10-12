@@ -41,7 +41,7 @@ Time management. This project wasn't incredibly difficult and I wanted to do muc
 I'm a lot more comfortable with the sequence of how to prepare a SQL statement to be executed through Java. I really enjoyed playing with the sequences and getting different outputs.
 
 One of the things I tried to work on with this project and I feel like I did a little better was reducing the redundancy of large blocks of code. There were 2 instances in the DAO class that I was happy I was able to simplify down. I took a screenshot of one of them (below). I know I more than likely still left some redundancy in there, but I feel like this project was a considerable improvement in that department.
-<img src="methods.png">
+<img src="images/methods.png">
 <img src="images/SetFilmMethod.png"  width="694" height="425">
 
 ## New Course Material
