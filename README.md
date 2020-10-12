@@ -17,9 +17,9 @@ Search through a database simulating a movie rental facility. Find films based o
 <img align="right" src="images/EnterID.png"  width="227" height="175">
 <img align="right" src="images/WelcomeDisplay.png"  width="217" height="250">
 
-On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public. When the user chooses to enter the employee portal, they are prompted for their employee ID which must match an ID from the database which will be acknowledged with a display of their name and a prompt for their individual and unique password.
+On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public. When the user chooses to enter the employee portal, they are prompted for their employee ID which must match an ID from the database which will be acknowledged with a display of their name and a prompt for their individual and unique password. The user is given 3 opportunities to input the correct password. 
 <img align="left" src="images/EmployeeSearchMenu.png"  width="373" height="235">
-The user is given 3 opportunities to input the correct password. Incorrect entry will result in being sent back to the Main Menu. Correct password entry allows access to the Employee Search Menu. The Employee Search Menu allows for more pinpoint search results. An employee will have the ability to search by Film ID and Inventory ID which a typical guest or consumer would not have knowledge of.
+Incorrect entry will result in being sent back to the Main Menu. Correct password entry allows access to the Employee Search Menu. The Employee Search Menu allows for more pinpoint search results. An employee will have the ability to search by Film ID and Inventory ID which a typical guest or consumer would not have knowledge of.
 
 When the user chooses to enter the guest portal they are presented with a basic set of search options to help them narrow their decision.
 <img align="right" src="images/GuestSearch.png"  width="276" height="235">
