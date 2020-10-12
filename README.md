@@ -19,7 +19,7 @@ Search through a database simulating a movie rental facility. Find films based o
 
 On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public. When the user chooses to enter the employee portal, they are prompted for their employee ID which must match an ID from the database which will be acknowledged with a display of their name and a prompt for their individual and unique password. The user is given 3 opportunities to input the correct password.
 <img align="left" src="images/EmployeeSearchMenu.png"  width="373" height="235">
-Incorrect entry will result in being sent back to the Main Menu. Correct password entry allows access to the Employee Search Menu. The Employee Search Menu allows for more pinpoint search results. An employee will have the ability to search by Film ID and Inventory ID which a typical guest or consumer would not have knowledge of.
+Incorrect entry will result in being sent back to the Main Menu. Correct password entry allows access to the Employee Search Menu. The Employee Search Menu allows for more pinpoint search results. An employee will have the ability to search by Film ID and Inventory ID which a typical guest or consumer would not likely have knowledge of.
 
 When the user chooses to enter the guest portal they are presented with a basic set of search options to help them narrow their decision.
 <img align="right" src="images/GuestSearch.png"  width="276" height="235">
@@ -35,11 +35,14 @@ Any search will move the program into the prompt for search type option where ba
 <img align="center" src="images/Goodbye.png"  width="366" height="235">
 
 ## Struggles
-
-
+Time management. This project wasn't incredibly difficult and I wanted to do much more with it but I felt like I spent a lot more time formatting things to look the way that I wanted them to rather than on the functional code. I wish I would have gotten around to allowing the user to refine their search results. In essence, allowing them to take an initial search and add another filter on to it. If you were vague enough, some of the searches could turn up thousands of results so it would have been nice to add that functionality in. I have an idea of how that would have worked but left it be to have a functioning project.
 
 ## Lessons Learned
+I'm a lot more comfortable with the sequence of how to prepare a SQL statement to be executed through Java. I really enjoyed playing with the sequences and getting different outputs.
 
+One of the things I tried to work on with this project and I feel like I did a little better was reducing the redundancy of large blocks of code. There were 2 instances in the DAO class that I was happy I was able to simplify down. I took a screenshot of one of them (below). I know I more than likely still left some redundancy in there, but I feel like this project was a considerable improvement in that department.
+<img src="methods.png">
+<img src="images/SetFilmMethod.png"  width="694" height="425">
 
 ## New Course Material
 1. SQL Statements (Queries)
