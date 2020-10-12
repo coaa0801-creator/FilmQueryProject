@@ -33,22 +33,14 @@ public class EmployeeSearch {
 				while (keepGoing) {
 					printPromptForPassword(user);
 					keepGoing = enterPassword(user);
-<<<<<<< HEAD
 					if (keepGoing == false) {
-=======
-					if (keepGoing = false) {
->>>>>>> e4126fc109fa180afc0bd1c21882999dc86363a5
 						boolean mainMenu = true;
 						return mainMenu;
 					}
 					keepGoing = false;
 					keepGoing = searchSwitch();
-<<<<<<< HEAD
 					System.out.println(keepGoing);
 					if (keepGoing == true) {
-=======
-					if (keepGoing = true) {
->>>>>>> e4126fc109fa180afc0bd1c21882999dc86363a5
 						boolean mainMenu = true;
 						return mainMenu;
 					}
