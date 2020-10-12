@@ -407,7 +407,7 @@ public Film findFilmByInventoryID(int inventoryId) {
 	  String sql = "SELECT film.*, language.* FROM film "
 	  		+ "JOIN language ON film.language_id = language.id "
 	  		+ "JOIN inventory_item ON inventory_item.film_id = film.id "
-	  		+ "WHERE film.id = ?";
+	  		+ "WHERE inventory_item.id = ?";
 	  film = getOneFilmFromIDNumber(sql, inventoryId, film);
 	  return film;
 }

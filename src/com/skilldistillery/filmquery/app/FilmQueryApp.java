@@ -57,6 +57,22 @@ public class FilmQueryApp {
 	  
 	  }
 		private void printLogOut() {
+			System.out.println("\n<==========================================>");
+			System.out.println("|                                          |");
+			System.out.println("|                                          |");
+			System.out.println("|         ___________________              |\n"
+			+"|       )=|                 |     /        |\n"
+			+"|         |     GOODBYE!!   |====||        |\n"
+			+"|         |                 |====||        |\n"
+			+"|         |                 |+    \\        |\n"
+			+"|         -------------------              |\n"
+			+"|	          (--)                     |\n"
+			+"|                *    *                    |\n"
+			+"|               *      *                   |\n"
+			+"|              *        *                  |\n"
+			+"|             *          *                 |\n"
+			+"|            *            *                |");
+			System.out.println("<==========================================>");
 	
 }
 

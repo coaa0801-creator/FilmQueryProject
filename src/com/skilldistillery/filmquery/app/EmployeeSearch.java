@@ -33,7 +33,6 @@ public class EmployeeSearch {
 				while (keepGoing) {
 					printPromptForPassword(user);
 					keepGoing = enterPassword(user);
-					searchMenu();
 					searchSwitch();
 					keepGoing = false;
 				}
@@ -182,9 +181,6 @@ return userSearch;
 	}
 
 	private void printPromptForPassword(EmployeeSearch user) {
-		int rightPad = 15;
-		int leftPad = 16;
-//		String paddedName = name + new String(new char[width - name.length()]).replace((char) 32, fill);
 		System.out.print("  ______                 _                       \n"
 				+ " |  ____|               | |                      \n"
 				+ " | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ \n"
@@ -195,13 +191,13 @@ return userSearch;
 				+ "                  |_|            |___/           ");
 		System.out.println("\n\n\n<================================>");
 		System.out.println("|                                |");
-		System.out.println("|              HELLO             |");
+		System.out.println("|" + Align.center("HELLO", 32, (char)32) + "|");
 		System.out.println("|                                |");
 		System.out.println(
-				"|" + padLeftSpaces(user.firstName, leftPad) + " " + rightPadding(user.lastName, rightPad) + "|");
+				"|" + Align.center(user.firstName + " " + user.lastName, 32, (char)32) + "|");
 		System.out.println("|                                |");
-		System.out.println("|        PLEASE ENTER YOUR       |");
-		System.out.println("|            PASSWORD            |");
+		System.out.println("|" + Align.center("PLEASE ENTER YOUR", 32, (char)32) + "|");
+		System.out.println("|" + Align.center("PASSWORD", 32, (char)32) + "|");
 		System.out.println("|                                |");
 		System.out.println("<================================>");
 	}
@@ -281,12 +277,13 @@ return userSearch;
 		System.out.println("|                                |");
 		System.out.println("|           SEARCH MENU          |");
 		System.out.println("|                                |");
-		System.out.println("|   1: BY FILM ID                |");
-		System.out.println("|   2: BY ACTOR ID               |");
-		System.out.println("|   3: BY INVENTORY ID           |");
-		System.out.println("|   4: BY FILM TITLE             |");
-		System.out.println("|   5: BY ACTOR                  |");
-		System.out.println("|   6: QUIT                      |");
+		System.out.println("|    1: BY FILM ID               |");
+		System.out.println("|    2: BY ACTOR ID              |");
+		System.out.println("|    3: BY INVENTORY ID          |");
+		System.out.println("|    4: BY FILM TITLE            |");
+		System.out.println("|    5: BY ACTOR                 |");
+		System.out.println("|    6: GENERAL SEARCH           |");
+		System.out.println("| QUIT: QUIT                     |");
 		System.out.println("|                                |");
 		System.out.println("<================================>");
 	}
