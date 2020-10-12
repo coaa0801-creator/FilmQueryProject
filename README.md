@@ -25,7 +25,14 @@ When the user chooses to enter the guest portal they are presented with a basic 
 <img align="right" src="images/GuestSearch.png"  width="276" height="235">
 
 Any search will move the program into the prompt for search type option where based on the user or employee's selection from their prospective menus the display will request them for their search parameter.
- <img align="left" src="images/PassingInSearchType.png"  width="367" height="196"> 
+ <img align="left" src="images/PassingInSearchType.png"  width="367" height="196">
+ The program will then create a search algorithm from the user input which allows the program to sift through the database for matching data. If no data is matched in the search, the program will display that no results were found. If one or more films matched with the search the film will be displayed with associated details. The program will also keep a count of the number of search results returned.
+ <img align="right" src="images/PrintFilmWithNumResults.png"  width="367" height="235">
+
+ Once the search has completed the user may choose to search again, quit the program or logout (return to Welcome Screen). An employee who chooses to logout will require password entry upon re-entry into the employee portal.
+
+ When a user chooses to Quit, the program will terminate with a goodbye message.
+<img align="center" src="images/GoodBye.png"  width="366" height="235">
 
 ## Struggles
 
