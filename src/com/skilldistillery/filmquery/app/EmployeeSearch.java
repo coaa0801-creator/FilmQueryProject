@@ -54,33 +54,40 @@ public class EmployeeSearch {
 				  searchMenu();
 				  String userInput = input.nextLine().toLowerCase();
 			  switch (userInput) {
-			  case "1": case "film": case "film name": case "name":
+			  case "1": case "film": case "film id": case "id":
 				  userSearch = promptForSearchParameter(1);
-				  List<Film> searchFilmTitle = run.findFilmByTitle(userSearch);
-				run.printFilmsList(searchFilmTitle);
+				  int filmIDSearch = Integer.parseInt(userSearch);
+				  Film searchFilmByIDReturn = run.findFilmById(filmIDSearch);
+				  run.printIndividualFilm(searchFilmByIDReturn);
 				  break;
-			  case "2": case "rating": case "r":
+			  case "2": case "actor id": case "aid":
 				  userSearch = promptForSearchParameter(2);
-				  List<Film> filmsByRating = run.findFilmsByRating(userSearch);
+				  int actorId = Integer.parseInt(userSearch);
+				  List<Film> filmsByRating = run.findFilmsByActorId(actorId);
 				  run.printFilmsList(filmsByRating);
 				  break;
-			  case "3": case "actor": case "a": 
+			  case "3": case "inventory": case "inv": case "inventory id": case "iid": case "i":
 				   userSearch = promptForSearchParameter(3);
-				   List<Film> filmsByActorName;
-				filmsByActorName = run.findFilmsByActorName(userSearch);
-				run.printFilmsList(filmsByActorName);
+				   int inventoryIDSearchNumber = Integer.parseInt(userSearch);
+				   Film filmByInventoryID = run.findFilmByInventoryID(inventoryIDSearchNumber);
+				run.printIndividualFilm(filmByInventoryID);
 				  break;
-			  case "4": case "genre":
+			  case "4": case "title": case "film title": case "t":
 				   userSearch = promptForSearchParameter(4);
-				   List<Film> filmsByGenre = run.findFilmsByCategory(userSearch);
-				  run.printFilmsList(filmsByGenre);
+				   List<Film> filmsByTitle = run.findFilmByTitle(userSearch);
+				  run.printFilmsList(filmsByTitle);
 				  break;
-			  case "5": case "general": case "search": case "general search":
-				   userSearch = promptForSearchParameter(5);
+			  case "5": case "actor": case "a":
+				  userSearch = promptForSearchParameter(5);
+				  List<Film> filmsByActor = run.findFilmsByActorName(userSearch);
+				  run.printFilmsList(filmsByActor);
+				  break;
+			  case "6": case "general": case "search": case "general search":
+				   userSearch = promptForSearchParameter(6);
 				   List<Film> filmsBasedOnSearch = run.findFilmsFromSearch(userSearch);
 				   run.printFilmsList(filmsBasedOnSearch);
 				  break;
-			  case "6": case "quit": case "q":
+			  case "7": case "quit": case "q":
 				  keepGoing = false;
 				  break;
 			default: System.out.println("Invalid entry\n");

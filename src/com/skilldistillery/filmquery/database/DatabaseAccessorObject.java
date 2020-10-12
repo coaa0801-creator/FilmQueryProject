@@ -25,52 +25,87 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 	}
 
+	
+	
+	
   @Override
-  public Film findFilmById(int filmId) throws SQLException {
+  public Film findFilmById(int filmId){
 	  Film film = null;
+		  String sql = "SELECT film.*, language.* FROM film"
+		  		+ "JOIN language on film.language_id = language.id "
+		  		+ " WHERE film.id = ?";
+		  film = getOneFilmFromIDNumber(sql, filmId, film);
+	  return film;
+  }
+
+  
+  
+  
+  
+  
+  
+  public Film getOneFilmFromIDNumber(String sql, int iDNumber, Film film) {
+	  try {
 	  Connection conn = DriverManager.getConnection(URL, user, pass);
-	  String sql = "SELECT film.*, language.* FROM film"
-	  		+ "JOIN language on film.language_id = language.id "
-	  		+ " WHERE film.id = ?";
 	  PreparedStatement stmt = conn.prepareStatement(sql);
-	  stmt.setInt(1,filmId);
+	  stmt.setInt(1,iDNumber);
 	  ResultSet filmResult = stmt.executeQuery();
 	  if (filmResult.next()) {
 	    film = new Film(); // Create the object
 	    film.setId(filmResult.getInt("id"));
 	    film.setTitle(filmResult.getString("title").toUpperCase());
-    	film.setDecsription(filmResult.getString("description").toUpperCase());
-    	film.setReleaseYear(filmResult.getShort("release_year"));
-    	film.setLanguage(filmResult.getString("name").toUpperCase());
-    	film.setRentalDuration(filmResult.getInt("rental_duration"));
-    	film.setRentalRate(filmResult.getDouble("rental_rate"));
-    	film.setFilmLength(filmResult.getInt("length"));
-    	film.setReplacementCost(filmResult.getDouble("replacement_cost"));
-    	film.setRating(filmResult.getString("rating").toUpperCase());
-    	film.setSpecialFeatures(filmResult.getString("special_features").toUpperCase());
+		film.setDecsription(filmResult.getString("description").toUpperCase());
+		film.setReleaseYear(filmResult.getShort("release_year"));
+		film.setLanguage(filmResult.getString("name").toUpperCase());
+		film.setRentalDuration(filmResult.getInt("rental_duration"));
+		film.setRentalRate(filmResult.getDouble("rental_rate"));
+		film.setFilmLength(filmResult.getInt("length"));
+		film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+		film.setRating(filmResult.getString("rating").toUpperCase());
+		film.setSpecialFeatures(filmResult.getString("special_features").toUpperCase());
+		film.setActors(findActorsByFilmId(filmResult.getInt("id")));
 	  }
-	 
+} catch (SQLException e) {
+	System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
+
+	e.printStackTrace();
+}
 	  return film;
   }
 
-  public Actor findActorById(int actorId) throws SQLException {
+  
+  
+  
+  
+  
+  public Actor findActorById(int actorId){
 	  Actor actor = null;
-	  Connection conn = DriverManager.getConnection(URL, user, pass);
-	  String sql = "SELECT id, first_name, last_name FROM actor WHERE actor.id = ?";
-	  PreparedStatement stmt = conn.prepareStatement(sql);
-	  stmt.setInt(1,actorId);
-	  ResultSet actorResult = stmt.executeQuery();
-	  if (actorResult.next()) {
-	    actor = new Actor(); // Create the object
-	    actor.setId(actorResult.getInt("id"));
-	    actor.setFirstName(actorResult.getString("first_name").toUpperCase());
-	    actor.setLastName(actorResult.getString("last_name").toUpperCase());
-	    actor.setFilms(findFilmsByActorId(actorId)); // An Actor has Films
-	  }
+	  try {
+		Connection conn = DriverManager.getConnection(URL, user, pass);
+		  String sql = "SELECT id, first_name, last_name FROM actor WHERE actor.id = ?";
+		  PreparedStatement stmt = conn.prepareStatement(sql);
+		  stmt.setInt(1,actorId);
+		  ResultSet actorResult = stmt.executeQuery();
+		  if (actorResult.next()) {
+		    actor = new Actor(); // Create the object
+		    actor.setId(actorResult.getInt("id"));
+		    actor.setFirstName(actorResult.getString("first_name").toUpperCase());
+		    actor.setLastName(actorResult.getString("last_name").toUpperCase());
+		    actor.setFilms(findFilmsByActorId(actorId)); // An Actor has Films
+		  }
+	} catch (SQLException e) {
+		System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
+
+//		e.printStackTrace();
+	}
 	 
 	  return actor;
 	}
 
+  
+  
+  
+  
 	public List<Film> findFilmsByActorId(int actorId) {
 	  List<Film> films = new ArrayList<>();
 	  try {
@@ -105,10 +140,15 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	    stmt.close();
 	    conn.close();
 	  } catch (SQLException e) {
-	    e.printStackTrace();
+			System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
+
+//	    e.printStackTrace();
 	  }
 	  return films;
 	}
+	
+	
+	
 	
 	
 	
@@ -137,7 +177,9 @@ public List<Actor> findActorsByFilmId(int filmId) {
 	    stmt.close();
 	    conn.close();
 	  } catch (SQLException e) {
-	    e.printStackTrace();
+			System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
+
+//	    e.printStackTrace();
 	  }
 	  return actors;
 	}
@@ -167,12 +209,18 @@ public EmployeeSearch findEmployeeByID(int employeeID){
 //	    System.out.println(employee.getFirstName());
 		  }
 	} catch (SQLException e) {
-		e.printStackTrace();
+		System.out.println("WE ARE SORRY, WE COULDN'T FIND ANY FILMS FOR THAT SEARCH\n");
+
+//		e.printStackTrace();
 	}
 	
 	return employee;
 	
 }
+
+
+
+
 
 
 @Override
@@ -184,6 +232,8 @@ public List<Film> findFilmByTitle(String filmName){
 	films = getListOfFilmsForStringSearchReturn(films, sql, filmName);
 	  return films;
 	  }
+
+
 
 
 
@@ -237,6 +287,11 @@ public List<Film> findFilmsByActorName(String actorName){
 	  return films;
 	}
 
+
+
+
+
+@Override
 public List<Film> findFilmsByRating(String searchRating) {
 	  List<Film> films = new ArrayList<>();
 	  String sql = "SELECT film.*, language.* FROM film "
@@ -246,6 +301,11 @@ public List<Film> findFilmsByRating(String searchRating) {
 	  return films;
 	}
 
+
+
+
+
+@Override
 public List<Film> findFilmsByCategory(String userGenre) {
 	List<Film> films = new ArrayList<>();
 	    String sql = "SELECT film.*, language.* FROM film "
@@ -257,6 +317,11 @@ public List<Film> findFilmsByCategory(String userGenre) {
 	  return films;
 	}
 
+
+
+
+
+@Override
 public List<Film> findFilmsFromSearch(String userSearch) {
 	List<Film> films = new ArrayList<>();
     String sql = "SELECT DISTINCT film.*, language.* FROM film "
@@ -302,16 +367,50 @@ public List<Film> findFilmsFromSearch(String userSearch) {
 	}
   return films;
 }
+
+
+
+
+
+@Override
 public void printFilmsList(List<Film> searchList) {
 	int count = 0;
 	for (Film film : searchList) {
 		System.out.println(film);
 		film.printCast(film.getActors());
-		System.out.println("\n==================================================================================================\n");
+		System.out.println("\n===================================================================================================================================\n");
 		count++;
 	}
 	System.out.println("Your search returned " + count + " results");
 }
- 
+
+
+
+
+
+
+@Override
+public void printIndividualFilm(Film film) {
+	System.out.println(film);
+	film.printCast(film.getActors());
+	System.out.println("\n===================================================================================================================================\n");
+}
+
+
+
+
+
+
+@Override
+public Film findFilmByInventoryID(int inventoryId) {
+	  Film film = null;
+	  String sql = "SELECT film.*, language.* FROM film "
+	  		+ "JOIN language ON film.language_id = language.id "
+	  		+ "JOIN inventory_item ON inventory_item.film_id = film.id "
+	  		+ "WHERE film.id = ?";
+	  film = getOneFilmFromIDNumber(sql, inventoryId, film);
+	  return film;
+}
+
 
 }

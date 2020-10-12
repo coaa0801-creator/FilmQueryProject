@@ -37,8 +37,7 @@ public class CustomerSearch {
 			  break;
 		  case "3": case "actor": case "a": 
 			   userSearch = promptForSearchParameter(3);
-			   List<Film> filmsByActorName;
-			filmsByActorName = run.findFilmsByActorName(userSearch);
+			   List<Film> filmsByActorName = run.findFilmsByActorName(userSearch);
 			run.printFilmsList(filmsByActorName);
 			  break;
 		  case "4": case "genre":
