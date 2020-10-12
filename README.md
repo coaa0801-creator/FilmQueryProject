@@ -14,8 +14,9 @@ Search through a database simulating a movie rental facility. Find films based o
 6. View log out screen upon Quit
 
 ## Walkthrough (Long Version)
+<img align="right" src="images/EnterID.png"  width="227" height="175">
 <img align="right" src="images/WelcomeDisplay.png"  width="217" height="250">
-<img align="right" src="images/EnterId.png"  width="227" height="175">
+
 On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public. When the user chooses to enter the employee portal, they are prompted for their employee ID which must match an ID from the database
 
 
