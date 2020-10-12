@@ -18,6 +18,7 @@ Search through a database simulating a movie rental facility. Find films based o
 <img align="right" src="images/WelcomeDisplay.png"  width="217" height="250">
 
 On initial program launch, the user is prompted to specify whether they are an Employee or whether they are a guest. This design is meant to simulate the differing access levels that a retail shop may offer. An employee will have more access to items than the general public. When the user chooses to enter the employee portal, they are prompted for their employee ID which must match an ID from the database which will be acknowledged with a display of their name and a prompt for their individual and unique password. The user is given 3 opportunities to input the correct password.
+**Note for SD Staff that most employees in the table do not have passwords so password was set to empty string. Just press enter key**
 <img align="left" src="images/EmployeeSearchMenu.png"  width="373" height="235">
 Incorrect entry will result in being sent back to the Main Menu. Correct password entry allows access to the Employee Search Menu. The Employee Search Menu allows for more pinpoint search results. An employee will have the ability to search by Film ID and Inventory ID which a typical guest or consumer would not likely have knowledge of.
 
@@ -40,7 +41,7 @@ Time management. This project wasn't incredibly difficult and I wanted to do muc
 ## Lessons Learned
 I'm a lot more comfortable with the sequence of how to prepare a SQL statement to be executed through Java. I really enjoyed playing with the sequences and getting different outputs.
 
-One of the things I tried to work on with this project and I feel like I did a little better was reducing the redundancy of large blocks of code. There were 2 instances in the DAO class that I was happy I was able to simplify down. I took a screenshot of one of them (below). I know I more than likely still left some redundancy in there, but I feel like this project was a considerable improvement in that department.
+One of the things I tried to work on with this project and I feel like I did a little better was reducing the redundancy of large blocks of code. There were 2 instances in the DAO class that I was happy I was able to simplify down. I took a Screen Shot of one of them.(below) I know I more than likely still left some redundancy in there, but I feel like this project was a considerable improvement in that department.
 <img src="images/methods.png">
 <img src="images/SetFilmMethod.png"  width="694" height="425">
 

@@ -36,7 +36,7 @@ public class Film {
 	public void printCast(List<Actor> actors2) {
 		System.out.println("CAST: ");
 			for (Actor actor : actors2) {
-		System.out.println("\t\t\t" + actor.getFirstName() + " " + actor.getLastName());}
+		System.out.println("\t\t\t" + actor.getFirstName() + " " + actor.getLastName() + " (ID: " + actor.getId() + ")");}
 	}
 
 

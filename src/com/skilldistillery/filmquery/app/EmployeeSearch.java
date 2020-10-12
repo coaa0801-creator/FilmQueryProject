@@ -70,10 +70,11 @@ public class EmployeeSearch {
 				  }
 				  break;
 			  case "2": case "actor id": case "aid":
+				  tryAgain = true;
 				  while (tryAgain) {
 				  try {
-					int actorId = Integer.parseInt(userSearch);
 					  userSearch = promptForSearchParameter(2);
+					int actorId = Integer.parseInt(userSearch);
 					  List<Film> filmsByRating = run.findFilmsByActorId(actorId);
 					  run.printFilmsList(filmsByRating);
 					  tryAgain = false;
@@ -84,6 +85,7 @@ public class EmployeeSearch {
 				  }
 				  break;
 			  case "3": case "inventory": case "inv": case "inventory id": case "iid": case "i":
+				  tryAgain = true;
 				  while (tryAgain) {
 				  try {
 					userSearch = promptForSearchParameter(3);
