@@ -50,7 +50,10 @@ public class CustomerSearch {
 			   List<Film> filmsBasedOnSearch = run.findFilmsFromSearch(userSearch);
 			   run.printFilmsList(filmsBasedOnSearch);
 			  break;
-		  case "6": case "quit": case "q":
+		  case "6": case "main": case "menu":
+			 boolean mainMenu = true;
+			 return mainMenu;
+		  case "7": case "quit": case "q":
 			  keepGoing = false;
 			  break;
 		default: System.out.println("Invalid entry\n");
@@ -115,12 +118,13 @@ System.out.print("   _____                 _   \n" +
 		System.out.println("\n\n\n<================================>");
 		System.out.println("|           SEARCH MENU          |");
 		System.out.println("|                                |");
-		System.out.println("|   1: BY FILM NAME              |");
-		System.out.println("|   2: BY RATING                 |");
-		System.out.println("|   3: BY ACTOR                  |");
-		System.out.println("|   4: BY GENRE                  |");
-		System.out.println("|   5: GENERAL SEARCH            |");
-		System.out.println("|   6: QUIT                      |");
+		System.out.println("|    1: BY FILM NAME             |");
+		System.out.println("|    2: BY RATING                |");
+		System.out.println("|    3: BY ACTOR                 |");
+		System.out.println("|    4: BY GENRE                 |");
+		System.out.println("|    5: GENERAL SEARCH           |");
+		System.out.println("|    6: MAIN MENU                |");
+		System.out.println("| QUIT: QUIT                     |");
 		System.out.println("|                                |");
 		System.out.println("<================================>");}
 }

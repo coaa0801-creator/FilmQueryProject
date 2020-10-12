@@ -31,7 +31,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
   @Override
   public Film findFilmById(int filmId){
 	  Film film = null;
-		  String sql = "SELECT film.*, language.* FROM film"
+		  String sql = "SELECT film.*, language.* FROM film "
 		  		+ "JOIN language on film.language_id = language.id "
 		  		+ " WHERE film.id = ?";
 		  film = getOneFilmFromIDNumber(sql, filmId, film);

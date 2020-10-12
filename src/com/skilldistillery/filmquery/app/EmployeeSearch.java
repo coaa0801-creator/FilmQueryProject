@@ -48,28 +48,53 @@ public class EmployeeSearch {
 			boolean keepGoing = true;
 			DatabaseAccessorObject run = new DatabaseAccessorObject();
 			String userSearch = "";
+			boolean tryAgain = true;
 			
 			  while(keepGoing) {
 				  searchMenu();
 				  String userInput = input.nextLine().toLowerCase();
 			  switch (userInput) {
 			  case "1": case "film": case "film id": case "id":
-				  userSearch = promptForSearchParameter(1);
-				  int filmIDSearch = Integer.parseInt(userSearch);
-				  Film searchFilmByIDReturn = run.findFilmById(filmIDSearch);
-				  run.printIndividualFilm(searchFilmByIDReturn);
+				  int filmIDSearch;
+				  while(tryAgain) {
+				try {
+					userSearch = promptForSearchParameter(1);
+					filmIDSearch = Integer.parseInt(userSearch);
+					Film searchFilmByIDReturn = run.findFilmById(filmIDSearch);
+					run.printIndividualFilm(searchFilmByIDReturn);
+					tryAgain = false;
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid please enter valid ID");
+//					e.printStackTrace();
+				}
+				  }
 				  break;
 			  case "2": case "actor id": case "aid":
-				  userSearch = promptForSearchParameter(2);
-				  int actorId = Integer.parseInt(userSearch);
-				  List<Film> filmsByRating = run.findFilmsByActorId(actorId);
-				  run.printFilmsList(filmsByRating);
+				  while (tryAgain) {
+				  try {
+					int actorId = Integer.parseInt(userSearch);
+					  userSearch = promptForSearchParameter(2);
+					  List<Film> filmsByRating = run.findFilmsByActorId(actorId);
+					  run.printFilmsList(filmsByRating);
+					  tryAgain = false;
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid please enter valid ID");
+//					e.printStackTrace();
+				}
+				  }
 				  break;
 			  case "3": case "inventory": case "inv": case "inventory id": case "iid": case "i":
-				   userSearch = promptForSearchParameter(3);
-				   int inventoryIDSearchNumber = Integer.parseInt(userSearch);
-				   Film filmByInventoryID = run.findFilmByInventoryID(inventoryIDSearchNumber);
-				run.printIndividualFilm(filmByInventoryID);
+				  while (tryAgain) {
+				  try {
+					userSearch = promptForSearchParameter(3);
+					   int inventoryIDSearchNumber = Integer.parseInt(userSearch);
+					   Film filmByInventoryID = run.findFilmByInventoryID(inventoryIDSearchNumber);
+					run.printIndividualFilm(filmByInventoryID);
+					tryAgain = false;
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid please enter valid ID");
+//					e.printStackTrace()
+				}}
 				  break;
 			  case "4": case "title": case "film title": case "t":
 				   userSearch = promptForSearchParameter(4);
@@ -86,7 +111,10 @@ public class EmployeeSearch {
 				   List<Film> filmsBasedOnSearch = run.findFilmsFromSearch(userSearch);
 				   run.printFilmsList(filmsBasedOnSearch);
 				  break;
-			  case "7": case "quit": case "q":
+			  case "7": case "menu": case "main":
+				  boolean mainMenu = true;
+				  return mainMenu;
+			  case "8": case "quit": case "q":
 				  keepGoing = false;
 				  break;
 			default: System.out.println("Invalid entry\n");
@@ -172,13 +200,7 @@ return userSearch;
 		System.out.println("<================================>");
 	}
 
-	public static String padLeftSpaces(String str, int n) {
-		return String.format("%1$" + n + "s", str);
-	}
 
-	public static String rightPadding(String str, int num) {
-		return String.format("%1$-" + num + "s", str);
-	}
 
 	private void printPromptForPassword(EmployeeSearch user) {
 		System.out.print("  ______                 _                       \n"
@@ -283,6 +305,7 @@ return userSearch;
 		System.out.println("|    4: BY FILM TITLE            |");
 		System.out.println("|    5: BY ACTOR                 |");
 		System.out.println("|    6: GENERAL SEARCH           |");
+		System.out.println("|    7: MAIN MENU                |");
 		System.out.println("| QUIT: QUIT                     |");
 		System.out.println("|                                |");
 		System.out.println("<================================>");
